@@ -2,3 +2,6 @@
 [Oo]bj/
 *.suo
 packages/
+.idea/
+.vscode/
+*.user

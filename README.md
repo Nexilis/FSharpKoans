@@ -1,4 +1,6 @@
-# Functional Koans - F# #
+# My solutions to F# Koans
+
+## Functional Koans - F# #
 
 Inspired by EdgeCase's fantastic [Ruby koans](http://github.com/edgecase/ruby_koans),
 the goal of the F# koans is to teach you F# through testing.
