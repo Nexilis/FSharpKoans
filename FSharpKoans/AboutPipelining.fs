@@ -24,10 +24,10 @@ module ``about pipelining`` =
 
         let numbers = [0..5]
 
-        let evens = List.filter isEven numbers
-        let result = List.map square evens
+        let evens = List.filter isEven numbers // [0;2;4]
+        let result = List.map square evens // [0;4;16]
 
-        AssertEquality result __
+        AssertEquality result [0;4;16]
 
     [<Koan>]
     let SquareEvenNumbersWithParens() =
@@ -39,7 +39,7 @@ module ``about pipelining`` =
 
         let result = List.map square (List.filter isEven numbers)
 
-        AssertEquality result __
+        AssertEquality result [0;4;16]
 
     [<Koan>]
     let SquareEvenNumbersWithPipelineOperator() =
@@ -51,7 +51,7 @@ module ``about pipelining`` =
             |> List.filter isEven
             |> List.map square
         
-        AssertEquality result __
+        AssertEquality result [0;4;16]
 
     [<Koan>]
     let HowThePipeOperatorIsDefined() =
@@ -63,4 +63,4 @@ module ``about pipelining`` =
             |> List.filter isEven
             |> List.map square
 
-        AssertEquality result __
+        AssertEquality result [0;4;16]
