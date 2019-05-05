@@ -27,7 +27,7 @@ open FSharpKoans.Core
 //---------------------------------------------------------------
 [<Koan(Sort = 15)>]
 module ``about the stock example`` =
-    
+
     let stockData =
         [ "Date,Open,High,Low,Close,Volume,Adj Close";
           "2012-03-30,32.40,32.41,32.04,32.26,31749400,32.26";
@@ -58,8 +58,26 @@ module ``about the stock example`` =
     // tests for yourself along the way. You can also try 
     // using the F# Interactive window to check your progress.
 
+    type StockDay =
+        {
+            Date: string
+            Diff: float
+        }
+
     [<Koan>]
     let YouGotTheAnswerCorrect() =
-        let result =  __
-        
-        AssertEquality "2012-03-13" result
+        let splitCommas (x:string) =
+            x.Split([|','|])
+
+        let convertToStockDay x =
+            let splitString = splitCommas x
+            let openValue = float splitString.[1]
+            let closeValue = float splitString.[4]
+            let difference = abs (openValue - closeValue)
+            {Date = splitString.[0]; Diff = difference}
+
+        let rawStockData = List.tail stockData
+        let stockDays = rawStockData |> List.map convertToStockDay
+        let maxDiffStockDay = stockDays |> List.maxBy (fun x -> x.Diff)
+
+        AssertEquality "2012-03-13" maxDiffStockDay.Date
